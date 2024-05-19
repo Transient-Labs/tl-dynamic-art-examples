@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+    This template is fixed to the size of the window, 
+    hiding anything past it, and is intended for dynamic art
+    written in plain HTML, CSS, and Javascript.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Template</title>
+    <style>
+        /* Center everything in the body */
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Loader styling */
+        .loader {
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 10px solid #202020;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari loader animation */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        /* Loader animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Put more CSS here! */
+    </style>
+</head>
+
+<body>
+    <!-- 
+        Put more HTML elements here!
+        We typically put a loader element in here and then remove it once the dynamic art piece is ready. 
+    -->
+    <div id="loader" class="loader"></div>
+</body>
+<script>
+    /**
+     * This is where you can write Javascript to control elements on the screen. 
+     * Typically there is an entrypoint when the window loads that something happens.
+     * This is not required, but has been a good strategy we have used in the past.
+     * To start, we typically at least remove the loader, which we have scaffolded below.
+    */
+
+    function removeLoader() {
+        document.getElementById("loader").remove();
+    }
+
+    window.onload = async () => {
+        // some precoditions must be met (we've put a 10 second sleep method here but feel free to remove)
+        await new Promise(r => setTimeout(r, 10_000));
+
+        // remove loader
+        removeLoader();
+    }
+</script>
+
+</html>

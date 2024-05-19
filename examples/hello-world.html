@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+    In this example, we are going to have an image and a button. 
+    Whenever the button is pressed, the images is randomly replaced with a new image.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World!</title>
+    <!--Create styles for the frame, image and button-->
+    <style>
+        .frame {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .meme {
+            max-width: 100vw;
+            max-height: 70vh;
+        }
+
+        .memeChanger {
+            padding: 0.5rem;
+            cursor: pointer;
+            border: 1px solid blueviolet;
+            background-color: white;
+            color: blueviolet;
+            font-family: 'Courier New', Courier, monospace;
+            transition-duration: 200ms;
+        }
+
+        .memeChanger:hover {
+            background-color: #8a2be242;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Create a container that allows us to stack and center align the images & button in a page-->
+    <div class="frame">
+        <img id="memeImage" class="meme" src="https://images7.memedroid.com/images/UPLOADED357/62d8d843c425b.webp">
+        <button id="memeButton" class="memeChanger">Get New Meme</button>
+    </div>
+</body>
+
+<script>
+    // create an array of image urls
+    const images = [
+        "https://images7.memedroid.com/images/UPLOADED357/62d8d843c425b.webp",
+        "https://images7.memedroid.com/images/UPLOADED358/625c179c0cc7a.jpeg",
+        "https://programmerhumor.io/wp-content/uploads/2024/05/programmerhumor-io-java-memes-javascript-memes-3a886d60a42579d.jpg",
+        "https://programmerhumor.io/wp-content/uploads/2024/05/programmerhumor-io-programming-memes-d132f70be8ba94f.jpg",
+        "https://programmerhumor.io/wp-content/uploads/2024/05/programmerhumor-io-debugging-memes-testing-memes-17db7d2d21d4128.jpg",
+        "https://programmerhumor.io/wp-content/uploads/2024/05/programmerhumor-io-programming-memes-frontend-memes-8370bee4fcf657c.jpg"
+    ];
+
+    // create function that on the button click, randomly replaces the meme
+    function replaceMeme() {
+        // get image so we can replace the `src`
+        const meme = document.getElementById("memeImage");
+
+        // get the new image url index
+        let index = Math.floor(Math.random() * images.length);
+
+        // if the new image url is the same as what's currently loaded, run again until that's not the case
+        while (images[index] === meme.src) {
+            index = Math.floor(Math.random() * images.length);
+        }
+
+        // set the meme
+        meme.src = images[index];
+    }
+
+    // add the function above to the memeButton as a callback handler, but only when the window has loaded
+    window.onload = () => {
+        document.getElementById("memeButton").onclick = replaceMeme;
+    }
+</script>
+
+</html>

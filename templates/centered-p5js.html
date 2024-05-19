@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+    This template is fixed to the size of the window, 
+    hiding anything past it, and is intended for dynamic art
+    written with p5.js. 
+
+    We've already ensured the loading state shows with a nice animated loader 
+    and that the loader goes away once the `setup` function is done executing.
+
+    We've then scaffolded a few commonly used p5.js functions like `draw`, `onMouseClick` and more.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered p5.js Template</title>
+    <!-- 
+        Below is the official CDN version of p5.js. 
+        We've also uploaded version 1.9.3 to Arweave for decentralized storage. 
+        Feel free to use whichever you want!
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"
+        integrity="sha512-0zGLOFv/+OQ6YfVCSGDQWhrDRx0ONmBqWvs3gI4olm8i6xtKoG1FhEnB4eTaWCVnojyfUDgE8Izeln+mAJAkFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://arweave.net/rEZMPul-eDepcNK95Rp05ihObWJFZNTxW8jDJ0r52dw"
+        integrity="sha512-0zGLOFv/+OQ6YfVCSGDQWhrDRx0ONmBqWvs3gI4olm8i6xtKoG1FhEnB4eTaWCVnojyfUDgE8Izeln+mAJAkFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <style>
+        /* Center everything in the body */
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Loader styling */
+        .loader {
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 10px solid #202020;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Safari loader animation */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        /* Loader animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        main {
+            /* 
+                p5.js puts the canvas instead the `main` element, 
+                which we want to hide until after the setup function is done.
+            */
+            display: none;
+        }
+
+        #p5_loading {
+            /* Hide p5.js default loader */
+            display: none;
+        }
+
+        /* Put more CSS here! */
+    </style>
+</head>
+
+<body>
+    <!-- 
+        Put more HTML elements here!
+        We typically put a loader element in here and then remove it once the dynamic art piece is ready. 
+    -->
+    <div id="loader" class="loader"></div>
+</body>
+<script>
+    /**
+     * This is where you can write p5.js Javascript to control elements on the screen. 
+     * We've scaffolded commonly used p5.js functions for you!
+    */
+
+    function removeLoader() {
+        document.getElementById("loader").remove();
+        document.getElementsByTagName("main")[0].style.display = "block";
+    }
+
+    // Put your variables here!
+    let x, y;
+
+    // p5.js preload function
+    function preload() {
+        // You can preload any needed images, videos, etc here
+    }
+
+    // p5.js setup function
+    function setup() {
+        // This is where the canvas is created.
+        // We've scaffolded a canvas that fits the size of the window.
+        createCanvas(windowWidth, windowHeight);
+
+        // We'll initialize our variables here
+        x = windowWidth / 2;
+        y = windowHeight / 2;
+
+        // Do more stuff here!
+
+        // Remove the loader and make canvas visible
+        removeLoader();
+    }
+
+    // p5.js draw function
+    function draw() {
+        // This function is run on a loop unless explicitly stopped.
+        // This is where you will put most of your code.
+        // We've just simply drawn a circle that follows your mouse around
+        background(150);
+        circle(x, y, 69);
+
+    }
+
+    // p5.js windowResized function
+    function windowResized() {
+        // This funciton is run whenever the window is resized.
+        // We've put code here to resize the canvas to fit the new window size and reset the mouseX and mouseY positions;
+        resizeCanvas(windowWidth, windowHeight);
+        x = windowWidth / 2;
+        y = windowHeight / 2;
+    }
+
+    // p5.js mouseMoved function
+    function mouseMoved() {
+        // This function is run whenever the mouse is moved
+        // We'll update mouseX and mouseY in here
+        x = mouseX;
+        y = mouseY;
+        // in theory, we don't need our own variables for tracking the mouse, as p5.js already has those, as you can see above.
+    }
+
+    // p5.js mouseClicked function
+    function mouseClicked() {
+        // This function is run whenever the mouse is clicked
+        alert("Mouse clicked!");
+    }
+
+</script>
+
+</html>
